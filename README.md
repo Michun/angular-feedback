@@ -25,7 +25,11 @@ Add as a dependency to your application:
 
 Add directive to your HTML:
 
-`<angular-feedback options="options"></angular-feedback>`
+`<angular-feedback
+         options="{taigaUrl: 'http://****/api/v1', taigaProject: **, taigaUser: {username: '****', password: '****', type: 'normal'}}"
+         class="ng-isolate-scope">
+ 
+ </angular-feedback>`
 
 The options attribute is connected to a `$scope` value in your controller, you can use this object to change/modify any of the options listed below.
 
