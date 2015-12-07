@@ -37,7 +37,7 @@ angular.module('angular-send-feedback').directive('angularFeedback', ['$http', f
                 }
             };
 
-            function initTaigaLogin () {it status
+            function initTaigaLogin () {
 
                 $http.post(taigaUrl + '/auth', taigaUser, config).then(function (response) {
                     config.headers.Authorization = 'Bearer ' + response.data.auth_token;
