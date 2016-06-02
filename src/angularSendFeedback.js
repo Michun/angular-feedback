@@ -1,6 +1,4 @@
 angular.module('angular-send-feedback').directive('angularFeedback', ['$http', '$rootScope', '$location', function ($http, $rootScope, $location) {
-
-
 	return {
 		restrict: 'EA',
 		replace: true,
@@ -9,8 +7,6 @@ angular.module('angular-send-feedback').directive('angularFeedback', ['$http', '
 			options: '='
 		},
 		link: function ($scope) {
-
-
 			var taigaUrl = $scope.options.taigaUrl;
 			var taigaUser = $scope.options.taigaUser;
 			var taigaProject = $scope.options.taigaProject;
@@ -24,13 +20,10 @@ angular.module('angular-send-feedback').directive('angularFeedback', ['$http', '
 			};
 
 			function initTaigaLogin () {
-
 				$http.post(taigaUrl + '/auth', taigaUser, config).then(function (response) {
 					config.headers.Authorization = 'Bearer ' + response.data.auth_token;
 				});
 			}
-
-
 
 			var options = $scope.options;
 			var settings = _.extend({
@@ -168,7 +161,7 @@ angular.module('angular-send-feedback').directive('angularFeedback', ['$http', '
 					rect = {};
 					drag = false;
 					highlight = 1,
-						post = {};
+					post = {};
 
 					if (settings.postBrowserInfo) {
 						post.browser = {};
@@ -202,7 +195,6 @@ angular.module('angular-send-feedback').directive('angularFeedback', ['$http', '
 
 					$(document).on('mousedown', '#feedback-canvas', function (e) {
 						if (canDraw) {
-
 							rect.startX = e.pageX - $(this).offset().left;
 							rect.startY = e.pageY - $(this).offset().top;
 							rect.w = 0;
@@ -245,7 +237,6 @@ angular.module('angular-send-feedback').directive('angularFeedback', ['$http', '
 							redraw(ctx);
 							rect.w = 0;
 						}
-
 					});
 
 					$(document).on('mousemove', function (e) {
@@ -420,9 +411,8 @@ angular.module('angular-send-feedback').directive('angularFeedback', ['$http', '
 						else {
 							$(this).css('z-index', '30000');
 							$(this).children().remove();
-							if ($(this).attr('data-type') == 'blackout') {
+							if ($(this).attr('data-type') == 'blackout')
 								redraw(ctx);
-							}
 						}
 					});
 
@@ -571,7 +561,6 @@ angular.module('angular-send-feedback').directive('angularFeedback', ['$http', '
 								$.ajax({
 									beforeSend: function (request) {
 										request.setRequestHeader("Authorization", config.headers.Authorization);
-										request.setRequestHeader("X-Customer-Id", undefined);
 									},
 									url: taigaUrl + '/issues/attachments',
 									data: fd,
@@ -583,19 +572,6 @@ angular.module('angular-send-feedback').directive('angularFeedback', ['$http', '
 									}
 								});
 
-								/*$http({
-								 method: 'POST',
-								 url: taigaUrl + '/issues/attachments',
-								 headers: {  'Authorization': config.headers.Authorization,
-								 'Content-Type': undefined,
-								 'X-Customer-Id': undefined},
-								 data: fd
-								 }).then(function (response) {
-								 console.log(response);
-								 $('#feedback-module').append(settings.tpl.submitSuccess);
-								 }, function (error) {
-								 $('#feedback-module').append(settings.tpl.submitError);
-								 });*/
 							}
 
 							function submitIssue(request){
